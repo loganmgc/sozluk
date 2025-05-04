@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Sozluk.EntityLayer.Concrete
+﻿namespace Sozluk.EntityLayer.Concrete
 {
     public class Writer
     {
@@ -16,6 +10,6 @@ namespace Sozluk.EntityLayer.Concrete
         public string Password { get; set; }
 
         public ICollection<Heading> Headings { get; set; }
-        public ICollection<Content> Contents{ get; set; }
+        public ICollection<Content> Contents { get; set; }
     }
 }
