@@ -11,7 +11,11 @@ namespace Sozluk.EntityLayer.Concrete
         public int Id { get; set; }
         public string Value { get; set; }
         public DateTime Date { get; set; }
-        //ContentYazar
-        //ContentBaşlık
+
+        public int HeadingId { get; set; }
+        public virtual Heading Heading { get; set; }
+
+        public int WriterId { get; set; }
+        public virtual Writer Writer { get; set; }
     }
 }
