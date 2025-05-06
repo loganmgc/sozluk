@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using Sozluk.BusinessLayer.Abstract;
 using Sozluk.BusinessLayer.Concrete;
+using Sozluk.BusinessLayer.ValidationRules;
 using Sozluk.DataAccessLayer.Concrate;
 using Sozluk.DataAccessLayer.EntityFramework;
 using Sozluk.EntityLayer.Concrete;
@@ -28,11 +30,21 @@ namespace Sozluk.Mvc.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult AddCategory(Category p)
-        //{
-        //    _cm.Add(p);
-        //    return RedirectToAction("GetCategoryList");
-        //}
+        [HttpPost]
+        public IActionResult AddCategory(Category p)
+        {
+            CategoryValidator categoryValidator = new();
+            ValidationResult results = categoryValidator.Validate(p);
+            if (results.IsValid)
+            {
+                _cm.CategoryAdd(p);
+                return RedirectToAction("GetCategoryList");
+            }
+            foreach (var item in results.Errors)
+            {
+                ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+            }
+            return View();
+        }
     }
 }
