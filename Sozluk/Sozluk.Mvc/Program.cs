@@ -1,5 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using Sozluk.BusinessLayer.Abstract;
+using Sozluk.BusinessLayer.Concrete;
+using Sozluk.DataAccessLayer.Abstract;
 using Sozluk.DataAccessLayer.Concrate;
+using Sozluk.DataAccessLayer.Concrate.Repositories;
+using Sozluk.DataAccessLayer.EntityFramework;
+using Sozluk.EntityLayer.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +13,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
+
+builder.Services.AddScoped<ICategoryService, CategoryManager>();
 
 var app = builder.Build();
 
