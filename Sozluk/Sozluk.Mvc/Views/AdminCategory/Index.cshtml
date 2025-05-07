@@ -1,24 +1,32 @@
-﻿
+﻿@model List<Sozluk.EntityLayer.Concrete.Category>
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <br />
-<table class="table table-bordered">
-    <tr>
-        <th>Id</th>
-        <th>Kategori</th>
-        <th>Durum</th>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>Spor</td>
-        <td>Aktif</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>Spor</td>
-        <td>Aktif</td>
-    </tr>
-</table>
-
+<div class="container">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Kategori Adı</th>
+				<th>Aksiyonlar</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<th>@item.Id</th>
+					<td>@item.Name</td>
+					<td>
+						<a href="" class="btn btn-danger">Sil</a>
+						<a href="" class="btn btn-warning">Güncelle</a>
+						<a href="" class="btn btn-primary">Başlıklar</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+	<a class="btn btn-outline-info" asp-action="AddCategory" asp-controller="AdminCategory">Yeni Kategori</a>
+</div>

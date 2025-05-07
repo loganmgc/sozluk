@@ -1,0 +1,22 @@
+﻿@model Sozluk.EntityLayer.Concrete.Category
+@{
+	ViewData["Title"] = "Kategori Ekle";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<div class="container">
+	<form class="form-group" method="post">
+		<div>
+			<label asp-for="Name">Kategori Adı</label>
+			<input class="form-control" asp-for="Name" placeholder="Kategori Adı" />
+			<span asp-validation-for="Name" class="text-danger"></span>
+		</div>
+		<br />
+		<div>
+			<label asp-for="Description">Kategori Açıklamasi</label>
+			<input class="form-control" asp-for="Description" placeholder="Kategori Açıklaması" />
+			<span asp-validation-for="Description" class="text-danger"></span>
+		</div>
+		<button class="btn btn-primary my-3">Ekle</button>
+	</form>
+</div>
