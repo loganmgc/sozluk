@@ -19,8 +19,8 @@
 				<th>@item.Id</th>
 				<td>@item.Name</td>
 				<td>
-					<a href="" class="btn btn-danger">Sil</a>
-					<a href="" class="btn btn-warning">Güncelle</a>
+					<a asp-controller="AdminCategory" asp-action="DeleteCategory" asp-route-id="@item.Id" class="btn btn-danger">Sil</a>
+					<a asp-controller="AdminCategory" asp-action="EditCategory" asp-route-id="@item.Id" class="btn btn-warning">Güncelle</a>
 					<a href="" class="btn btn-primary">Başlıklar</a>
 				</td>
 			</tr>

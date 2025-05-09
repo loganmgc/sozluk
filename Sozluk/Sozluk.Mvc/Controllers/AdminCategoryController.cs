@@ -40,5 +40,36 @@ namespace Sozluk.Mvc.Controllers
             }
             return View();
         }
+
+        public IActionResult DeleteCategory(int id)
+        {
+            var categoryValue = _cm.GetById(id);
+            _cm.CategoryDelete(categoryValue);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult EditCategory(int id)
+        {
+            var categoryValue = _cm.GetById(id);
+            return View(categoryValue);
+        }
+
+        [HttpPost]
+        public IActionResult EditCategory(Category p)
+        {
+            CategoryValidator categoryValidator = new();
+            ValidationResult results = categoryValidator.Validate(p); 
+            if (results.IsValid)
+            {
+                _cm.CategoryUpdate(p);
+                return RedirectToAction("Index");
+            }
+            foreach (var item in results.Errors)
+            {
+                ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+            }
+            return View();
+        }
     }
 }
