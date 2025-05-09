@@ -23,6 +23,11 @@ namespace Sozluk.DataAccessLayer.Concrate.Repositories
             _context.SaveChanges();
         }
 
+        public T Get(Expression<Func<T, bool>> filter)
+        {
+            return _context.Set<T>().SingleOrDefault(filter);
+        }
+
         public void Insert(T p)
         {
             _context.Set<T>().Add(p);

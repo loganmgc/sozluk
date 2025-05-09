@@ -4,29 +4,27 @@
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <br />
-<div class="container">
-	<table class="table table-bordered">
-		<thead>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Kategori Adı</th>
+			<th>Aksiyonlar</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
 			<tr>
-				<th>#</th>
-				<th>Kategori Adı</th>
-				<th>Aksiyonlar</th>
+				<th>@item.Id</th>
+				<td>@item.Name</td>
+				<td>
+					<a href="" class="btn btn-danger">Sil</a>
+					<a href="" class="btn btn-warning">Güncelle</a>
+					<a href="" class="btn btn-primary">Başlıklar</a>
+				</td>
 			</tr>
-		</thead>
-		<tbody>
-			@foreach (var item in Model)
-			{
-				<tr>
-					<th>@item.Id</th>
-					<td>@item.Name</td>
-					<td>
-						<a href="" class="btn btn-danger">Sil</a>
-						<a href="" class="btn btn-warning">Güncelle</a>
-						<a href="" class="btn btn-primary">Başlıklar</a>
-					</td>
-				</tr>
-			}
-		</tbody>
-	</table>
-	<a class="btn btn-outline-info" asp-action="AddCategory" asp-controller="AdminCategory">Yeni Kategori</a>
-</div>
+		}
+	</tbody>
+</table>
+<a class="btn btn-outline-info" asp-action="AddCategory" asp-controller="AdminCategory">Yeni Kategori</a>
